@@ -1,0 +1,6 @@
+- if object && object.errors.any?
+  .alert.alert-error.alert-block
+    %h4.alert-heading The following errors prevented the requested action
+    %ul.unstyled
+      - object.errors.full_messages.each do |msg|
+        %li= msg
