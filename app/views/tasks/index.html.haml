@@ -1,0 +1,8 @@
+%h1 Activity Inventory
+=form_for @task, :class => 'form-inline' do |f|
+  =f.text_field :name
+  =f.submit
+- if @tasks
+  %ol
+    - @tasks.each do |task|
+      %li= task.name
