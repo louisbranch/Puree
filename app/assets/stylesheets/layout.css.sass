@@ -3,3 +3,22 @@ body
 
 ol.sortable
   min-height: 50px
+  &.unassigned_tasks
+    li.tasks form
+      display: none
+  li.tasks
+    input
+      display: none
+    label
+      display: inline-block
+      width: 30px
+      height: 30px
+      background-color: lightgrey
+      text-indent: -9999px
+      cursor: pointer
+      &:hover
+        background-color: darkgrey
+      &:active
+        background-color: grey
+      &.selected
+        background-color: black

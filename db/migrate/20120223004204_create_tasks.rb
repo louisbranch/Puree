@@ -4,6 +4,7 @@ class CreateTasks < ActiveRecord::Migration
       t.string :name
       t.references :todo
       t.integer :position
+      t.integer :pomodoros, :default => 1
       t.timestamps
     end
     add_index :tasks, :todo_id

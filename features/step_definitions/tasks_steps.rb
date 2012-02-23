@@ -11,6 +11,11 @@ Given /^two tasks exist$/ do
   @task2 = FactoryGirl.create(:task, :name => '2nd Task')
 end
 
+Given /^I have a task on my to do today list$/ do
+  @todo = FactoryGirl.create(:todo)
+  @task = FactoryGirl.create(:task, :todo => @todo)
+end
+
 When /^I create a new task$/ do
   fill_in 'task[name]', :with => 'Learn more about the Pomodoro Technique'
   click_on 'Create Task'
@@ -30,6 +35,11 @@ When /^I drag this task to this to do list$/ do
   task.drag_to(list)
 end
 
+When /^I add a number of estimated pomodoros to this task$/ do
+  visit root_path
+  find('label', :text => '3 Pomodoros').click
+end
+
 Then /^I should see this new task listed on the inventory$/ do
   page.should have_content 'Learn more about the Pomodoro Technique'
 end
@@ -44,4 +54,9 @@ Then /^I should see this task listed on this to do list$/ do
   within("li#todo_#{@todo.id}") do
     page.should have_content @task.name
   end
+end
+
+Then /^I should see how many pomodoros this task will last$/ do
+  visit root_path
+  page.should have_content '3 Pomodoros'
 end
