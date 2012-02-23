@@ -3,6 +3,5 @@
   =f.text_field :name
   =f.submit
 - if @tasks
-  %ol
-    - @tasks.each do |task|
-      %li= task.name
+  %ol{'data-sort-url' => sort_tasks_path }
+    =render @tasks
