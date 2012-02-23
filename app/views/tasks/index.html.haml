@@ -1,7 +1,14 @@
 %h1 Activity Inventory
+=link_to 'Create To Do Today List', todos_path, :method => :post, :class => 'btn btn-success'
 =form_for @task, :class => 'form-inline' do |f|
   =f.text_field :name
-  =f.submit
+  =f.submit :class => 'btn btn-success'
 - if @tasks
+  %h2 Unassigned Tasks
   %ol{'data-sort-url' => sort_tasks_path }
     =render @tasks
+- if @todos
+  %h2 To Do Lists
+  %ul
+    - @todos.each do |todo|
+      %li= "To Do for #{todo.created_at.strftime('%d %b %Y')}"

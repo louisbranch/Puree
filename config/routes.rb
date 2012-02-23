@@ -4,6 +4,8 @@ Puree::Application.routes.draw do
     post 'sort', :on => :collection
   end
 
+  resources :todos, :only => [:create]
+
   root :to => 'tasks#index'
 
 end
