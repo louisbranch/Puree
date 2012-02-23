@@ -2,6 +2,10 @@ Given /^I go to my activity inventory$/ do
   visit root_path
 end
 
+Given /^I have a task$/ do
+  @task = FactoryGirl.create(:task)
+end
+
 Given /^two tasks exist$/ do
   @task1 = FactoryGirl.create(:task, :name => '1st Task')
   @task2 = FactoryGirl.create(:task, :name => '2nd Task')
@@ -15,8 +19,15 @@ end
 When /^I drag and drop the second task to the top of the first$/ do
   visit root_path
   task2 = find("li#task_#{@task2.id} i.handle")
-  list = find("ol")
+  list = find("ol.unassigned_tasks")
   task2.drag_to(list)
+end
+
+When /^I drag this task to this to do list$/ do
+  visit root_path
+  task = find("li#task_#{@task.id} i.handle")
+  list = find("ul#todos li#todo_#{@todo.id} ol.todo_tasks")
+  task.drag_to(list)
 end
 
 Then /^I should see this new task listed on the inventory$/ do
@@ -24,5 +35,13 @@ Then /^I should see this new task listed on the inventory$/ do
 end
 
 Then /^I should see these task sorted as second and first$/ do
+  visit root_path
   page.body.should =~ /#{'2nd Task'}.*#{'1st Task'}/m
+end
+
+Then /^I should see this task listed on this to do list$/ do
+  visit root_path
+  within("li#todo_#{@todo.id}") do
+    page.should have_content @task.name
+  end
 end

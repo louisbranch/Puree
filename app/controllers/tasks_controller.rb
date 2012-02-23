@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
 
   def index
-    @tasks = Task.all
+    @tasks = Task.unassigned
     @task = Task.new
-    @todos = Todo.all
+    @todos = Todo.all_with_tasks
   end
 
   def create
@@ -15,7 +15,10 @@ class TasksController < ApplicationController
   def sort
     tasks = params[:task]
     if tasks
-      tasks.each_with_index { |id, index| Task.update_all({position: (index+1)},{id: id}) }
+      todo = params[:todo]
+      tasks.each_with_index do |id, index|
+        Task.update_all({todo_id: todo, position: (index+1)},{id: id})
+      end
     end
     render nothing: true
   end

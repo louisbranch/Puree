@@ -15,10 +15,13 @@ ActiveRecord::Schema.define(:version => 20120223125555) do
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
+    t.integer  "todo_id"
     t.integer  "position"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "tasks", ["todo_id"], :name => "index_tasks_on_todo_id"
 
   create_table "todos", :force => true do |t|
     t.datetime "created_at", :null => false

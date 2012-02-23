@@ -5,10 +5,13 @@
   =f.submit :class => 'btn btn-success'
 - if @tasks
   %h2 Unassigned Tasks
-  %ol{'data-sort-url' => sort_tasks_path }
+  %ol.sortable.unassigned_tasks{'data-sort-url' => sort_tasks_path( :todo => nil ) }
     =render @tasks
 - if @todos
   %h2 To Do Lists
-  %ul
+  %ul#todos
     - @todos.each do |todo|
-      %li= "To Do for #{todo.created_at.strftime('%d %b %Y')}"
+      %li{:id => ['todo', todo.id]}
+        = "To Do for #{todo.created_at.strftime('%d %b %Y')}"
+        %ol.sortable.todo_tasks{'data-sort-url' => sort_tasks_path( :todo => todo.id ) }
+          =render todo.tasks, :partial => 'tasks/task'

@@ -1,9 +1,12 @@
 class Task < ActiveRecord::Base
   before_create :set_position
 
+  belongs_to :todo
+
   validates :name, :presence => true
 
   default_scope :order => 'position ASC'
+  scope :unassigned, where(:todo_id => nil)
 
   private
 

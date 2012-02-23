@@ -1,7 +1,7 @@
 $ dragTasks = ->
-  if $('ol').length
-    $('ol').sortable
-      #connectWith: 'td ul',
+  if $('ol.sortable').length
+    $('ol.sortable').sortable
+      connectWith: 'ol.sortable',
       #placeholder: 'user_stories placeholder',
       handle: 'i.handle',
       opacity: 0.9,
