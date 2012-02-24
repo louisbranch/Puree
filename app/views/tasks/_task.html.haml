@@ -1,4 +1,4 @@
-%li{:id => ['task', task.id], :class => 'tasks'}
+%li{:id => ['task', task.id], :class => 'tasks', 'data-url' => task_path(task)}
   %i.icon-resize-vertical.handle
   = task.name
   - if task.can_be_estimated?

@@ -6,6 +6,11 @@ class TasksController < ApplicationController
     @todos = Todo.all_with_tasks
   end
 
+  def show
+    @task = Task.find(params[:id])
+    render :layout => false
+  end
+
   def create
     @task = Task.new(params[:task])
     @task.save
@@ -13,7 +18,9 @@ class TasksController < ApplicationController
   end
 
   def sort
-    Task.sort(params[:task], params[:todo])
+    if params[:task]
+      Task.sort(params[:task], params[:todo])
+    end
     render nothing: true
   end
 
