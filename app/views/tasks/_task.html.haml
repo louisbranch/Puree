@@ -3,5 +3,5 @@
   = task.name
   - if task.can_be_estimated?
     = render 'pomodoros/form', :task => task
-  - else
+  - elsif task.pomodoros > 0
     = "#{task.pomodoros} Pomodoros"

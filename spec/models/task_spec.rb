@@ -25,14 +25,16 @@ describe Task do
       task.position.should eq(2)
     end
 
+  end
+
   context "pomodoros" do
 
-    it "can be estimated when it is in a to do list and they haven't be estimated before" do
+    it "can be estimated when it is in a to do list and its hasn't been estimated before" do
       task.todo_id = 1
       task.can_be_estimated?.should be_true
     end
 
-    it "cannot be estimated when it is not a to do list" do
+    it "cannot be estimated when it is not in a to do list" do
       task.can_be_estimated?.should be_false
     end
 
@@ -48,6 +50,24 @@ describe Task do
     end
 
   end
+
+  context "sorting" do
+
+    it "updates its to do list and position" do
+      task = FactoryGirl.create(:task)
+      Task.sort(['99',task.id],1)
+      task.reload
+      task.position.should eq(2)
+      task.todo_id.should eq(1)
+    end
+
+    it "updates its position and erase its pomodoros when moved back to unassigned tasks" do
+      task = FactoryGirl.create(:task, :pomodoros => 5)
+      Task.sort(['99',task.id],nil)
+      task.reload
+      task.position.should eq(2)
+      task.pomodoros.should eq(0)
+    end
 
   end
 
