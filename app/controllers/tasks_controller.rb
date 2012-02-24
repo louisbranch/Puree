@@ -13,13 +13,7 @@ class TasksController < ApplicationController
   end
 
   def sort
-    tasks = params[:task]
-    if tasks
-      todo = params[:todo]
-      tasks.each_with_index do |id, index|
-        Task.update_all({todo_id: todo, position: (index+1)},{id: id})
-      end
-    end
+    Task.sort(params[:task], params[:todo])
     render nothing: true
   end
 

@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20120223125555) do
     t.string   "name"
     t.integer  "todo_id"
     t.integer  "position"
-    t.integer  "pomodoros",  :default => 1
+    t.integer  "pomodoros",  :default => 0
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end

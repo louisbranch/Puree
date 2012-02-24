@@ -12,11 +12,10 @@ $ dragTasks = ->
       update: ->
         $.post($(this).data('sort-url'), $(this).sortable('serialize'))
 
+
 $ addPomodoroToTask = ->
   if $('form.edit_task input.pomodoros').length
     $('form.edit_task input.pomodoros').click ->
-      pomodoros = $(this).val()
       $(this).parent().siblings('label').removeClass('selected')
       $(this).parent().addClass('selected')
-      $(this).parent().siblings('span').html(pomodoros)
       $(this).parent().submit()
