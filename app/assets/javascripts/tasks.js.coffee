@@ -1,3 +1,8 @@
+$ loadTooltip = ->
+  if $('[data-tooltip]').length
+    $('[data-tooltip]').tipsy
+      fade: true
+
 $ sortTasks = ->
   if $('ol.sortable').length
     $('ol.sortable').sortable
@@ -17,17 +22,28 @@ $ sortTasks = ->
           success: ->
             reloadTask(ui.item) if ui.item
 
-$ addPomodoroToTask = ->
+$ addPomodoro = ->
   if $('form.edit_task input.pomodoros').length
+    highlightPomodoro()
     $('form.edit_task input.pomodoros').click ->
-      $(this).parent().siblings('label').removeClass('selected')
-      $(this).parent().addClass('selected')
       $(this).parent().submit()
+      $('.tipsy').remove()
       reloadTask($(this).parents('li.tasks'))
+
+highlightPomodoro = ->
+  $('form.edit_task label').hover(
+    ->
+      $(this).addClass('active')
+      $(this).prevAll('label').addClass('active')
+    ->
+      $(this).removeClass('active')
+      $(this).prevAll('label').removeClass('active')
+  )
 
 reloadTask = (task) ->
   $.ajax
     url: $(task).data('url')
     success: (data) ->
       $(task).replaceWith(data)
-      addPomodoroToTask()
+      addPomodoro()
+      loadTooltip()
