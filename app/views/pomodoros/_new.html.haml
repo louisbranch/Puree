@@ -1,0 +1,6 @@
+= form_for task, :url => pomodoros_path, :remote => true, :method => :post do |f|
+  =f.hidden_field :id
+  - 1.upto(10) do |n|
+    =f.label "#{task.id}_pomodoro_#{n}", 'data-tooltip' => true, :title => "#{n} Pomodoros" do
+      =f.radio_button :pomodoros, n, :id => "task_#{task.id}_pomodoro_#{n}"
+      ="#{n} Pomodoros"

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Task do
 
-  let(:task) {FactoryGirl.build(:task)}
+  let(:task) { FactoryGirl.build(:task) }
 
   context "validations" do
     it "requires a name" do
@@ -29,24 +29,20 @@ describe Task do
 
   context "pomodoros" do
 
+    let(:task) { FactoryGirl.build(:task, :todo_id => 1) }
+
     it "can be estimated when it is in a to do list and its hasn't been estimated before" do
-      task.todo_id = 1
       task.can_be_estimated?.should be_true
     end
 
     it "cannot be estimated when it is not in a to do list" do
+      task.todo_id = nil
       task.can_be_estimated?.should be_false
     end
 
     it "cannot be estimated when it has been estimated before" do
-      task.pomodoros = 1
+      FactoryGirl.create(:pomodoro, :task => task)
       task.can_be_estimated?.should be_false
-    end
-
-    it "has its pomodoro erased when moved back to unassigned tasks" do
-      task = FactoryGirl.create(:task, :todo_id => 1, :pomodoros => 5)
-      task.update_attributes(:todo_id => nil)
-      task.pomodoros.should eq(0)
     end
 
   end
@@ -59,14 +55,6 @@ describe Task do
       task.reload
       task.position.should eq(2)
       task.todo_id.should eq(1)
-    end
-
-    it "updates its position and erase its pomodoros when moved back to unassigned tasks" do
-      task = FactoryGirl.create(:task, :pomodoros => 5)
-      Task.sort(['99',task.id],nil)
-      task.reload
-      task.position.should eq(2)
-      task.pomodoros.should eq(0)
     end
 
   end

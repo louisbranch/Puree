@@ -1,5 +1,0 @@
-= form_for task, :url => task_pomodoros_path(task), :method => :post, :remote => true do |f|
-  - 1.upto(10) do |n|
-    =f.label "#{task.id}_pomodoros_#{n}", :class => task.pomodoros == n ? 'selected':nil, 'data-tooltip' => true, :title => "#{n} Pomodoros" do
-      =f.radio_button :pomodoros, n, :class => 'pomodoros', :id => "task_#{task.id}_pomodoros_#{n}"
-      ="#{n} Pomodoros"

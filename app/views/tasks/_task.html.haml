@@ -2,6 +2,8 @@
   %i.icon-resize-vertical.handle
   = task.name
   - if task.can_be_estimated?
-    = render 'pomodoros/form', :task => task
-  - elsif task.pomodoros > 0
-    = "#{task.pomodoros} Pomodoros"
+    = render 'pomodoros/new', :task => task
+  - elsif task.pomodoros.size > 0
+    = render 'pomodoros/show', :task => task
+  - if task.ongoing
+    = render 'pomodoros/show', :task => task

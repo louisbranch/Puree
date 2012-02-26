@@ -1,9 +1,12 @@
 class PomodorosController < ApplicationController
 
   def create
-    task = Task.find(params[:task_id])
-    task.update_attributes(params[:task])
+    Pomodoro.mass_create(params[:task][:id], params[:task][:pomodoros].to_i)
     render nothing: true
+  end
+
+  def updated
+
   end
 
 end

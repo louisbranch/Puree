@@ -23,10 +23,10 @@ $ sortTasks = ->
             reloadTask(ui.item) if ui.item
 
 $ addPomodoro = ->
-  if $('form.edit_task input.pomodoros').length
+  if $('form.edit_task').length
     highlightPomodoro()
-    $('form.edit_task input.pomodoros').click ->
-      $(this).parent().submit()
+    $('form.edit_task input').click ->
+      $(this).submit()
       $('.tipsy').remove()
       reloadTask($(this).parents('li.tasks'))
 

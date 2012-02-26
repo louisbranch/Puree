@@ -58,5 +58,5 @@ end
 
 Then /^I should see how many pomodoros this task will last$/ do
   visit root_path
-  page.should have_content '3 Pomodoros'
+  page.should have_css("img[title='3 Pomodoros']")
 end

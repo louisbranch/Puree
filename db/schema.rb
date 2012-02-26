@@ -11,15 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120223125555) do
+ActiveRecord::Schema.define(:version => 20120225212023) do
+
+  create_table "pomodoros", :force => true do |t|
+    t.integer  "task_id"
+    t.boolean  "finished"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "pomodoros", ["task_id"], :name => "index_pomodoros_on_task_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
-    t.integer  "todo_id"
     t.integer  "position"
-    t.integer  "pomodoros",  :default => 0
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.integer  "todo_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "tasks", ["todo_id"], :name => "index_tasks_on_todo_id"
