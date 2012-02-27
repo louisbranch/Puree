@@ -45,6 +45,20 @@ describe Task do
       task.can_be_estimated?.should be_false
     end
 
+    it "is ongoing while all its pomodoros aren't finished" do
+      FactoryGirl.create(:pomodoro, :task => task)
+      task.should be_ongoing
+    end
+
+    it "is not ongoing when it doesn't have any pomodoros" do
+      task.should_not be_ongoing
+    end
+
+    it "is not ongoing when its pomodoros are finished" do
+      FactoryGirl.create(:pomodoro, :task => task, :finished => true)
+      task.should_not be_ongoing
+    end
+
   end
 
   context "sorting" do

@@ -19,6 +19,14 @@ class Task < ActiveRecord::Base
     !todo_id.nil? && pomodoros.empty?
   end
 
+  def ongoing?
+    if pomodoros.any? && !pomodoros.all_finished?
+      true
+    else
+      false
+    end
+  end
+
   private
 
   def set_position

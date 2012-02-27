@@ -1,12 +1,18 @@
 class PomodorosController < ApplicationController
 
+  respond_to :html, :js
+
   def create
-    Pomodoro.mass_create(params[:task][:id], params[:task][:pomodoros].to_i)
-    render nothing: true
+    @task = params[:task][:id]
+    Pomodoro.mass_create(@task, params[:task][:pomodoros].to_i)
+    respond_with(@task, :location => root_path)
   end
 
-  def updated
-
+  def update
+    pomodoro = Pomodoro.find(params[:id])
+    pomodoro.start
+    @task = pomodoro.task_id
+    respond_with(@task, :location => root_path)
   end
 
 end

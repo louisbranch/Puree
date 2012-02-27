@@ -27,8 +27,8 @@ $ addPomodoro = ->
     highlightPomodoro()
     $('form.edit_task input').click ->
       $(this).submit()
+      $(this).attr('disabled', 'disabled')
       $('.tipsy').remove()
-      reloadTask($(this).parents('li.tasks'))
 
 highlightPomodoro = ->
   $('form.edit_task label').hover(
@@ -40,7 +40,7 @@ highlightPomodoro = ->
       $(this).prevAll('label').removeClass('active')
   )
 
-reloadTask = (task) ->
+window.reloadTask = (task) ->
   $.ajax
     url: $(task).data('url')
     success: (data) ->

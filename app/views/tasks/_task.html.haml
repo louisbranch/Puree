@@ -5,5 +5,8 @@
     = render 'pomodoros/new', :task => task
   - elsif task.pomodoros.size > 0
     = render 'pomodoros/show', :task => task
-  - if task.ongoing
-    = render 'pomodoros/show', :task => task
+  - if task.ongoing?
+    - if task.pomodoros.next.ongoing?
+      %span Pomodoro has started
+    - else
+      = link_to 'Start Next Pomodoro', pomodoro_path(task.pomodoros.next), :method => :put, :class => 'btn btn-info', :remote => true, :id => 'start_pomodoro'
