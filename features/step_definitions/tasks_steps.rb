@@ -30,8 +30,8 @@ end
 
 When /^I drag this task to this to do list$/ do
   visit root_path
-  task = find("li#task_#{@task.id} i.handle")
-  list = find("ul#todos li#todo_#{@todo.id} ol.todo_tasks")
+  task = find("i.handle")
+  list = find("ol.todo_tasks")
   task.drag_to(list)
 end
 

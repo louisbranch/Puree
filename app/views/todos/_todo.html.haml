@@ -1,4 +1,5 @@
 %li{:id => ['todo', todo.id]}
-  = "To Do for #{todo.created_at.strftime('%d %b %Y')}"
+  %h3= "To Do for #{todo.created_at.strftime('%d %b %Y')}"
+  %hr
   %ol.sortable.todo_tasks{'data-sort-url' => sort_tasks_path( :todo => todo.id ) }
     =render todo.tasks, :partial => 'tasks/task'

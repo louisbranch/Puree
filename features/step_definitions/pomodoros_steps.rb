@@ -6,7 +6,7 @@ end
 
 When /^I start this pomodoro$/ do
   visit root_path
-  click_on 'Start Next Pomodoro'
+  click_on 'Start'
 end
 
 Then /^I should start my work iteration$/ do

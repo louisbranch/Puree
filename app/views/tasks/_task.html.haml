@@ -1,5 +1,5 @@
 %li{:id => ['task', task.id], :class => 'tasks', 'data-url' => task_path(task)}
-  %i.icon-resize-vertical.handle
+  %i.icon-move.handle
   = task.name
   - if task.can_be_estimated?
     = render 'pomodoros/new', :task => task
@@ -9,4 +9,6 @@
     - if task.pomodoros.next.ongoing?
       %span Pomodoro has started
     - else
-      = link_to 'Start Next Pomodoro', pomodoro_path(task.pomodoros.next), :method => :put, :class => 'btn btn-info', :remote => true, :id => 'start_pomodoro'
+      = link_to pomodoro_path(task.pomodoros.next), :method => :put, :class => 'btn btn-info', :remote => true, :id => 'start_pomodoro' do
+        %i.icon-play.icon-white
+        Start
