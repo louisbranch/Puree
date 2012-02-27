@@ -1,17 +1,11 @@
 %h1 Activity Inventory
-=link_to 'Create To Do Today List', todos_path, :method => :post, :class => 'btn btn-success'
-=form_for @task, :class => 'form-inline' do |f|
+=link_to 'Create To Do Today List', todos_path, :method => :post, :class => 'btn btn-success', :remote => true
+=form_for @task, :class => 'form-inline', :remote => true do |f|
   =f.text_field :name
   =f.submit :class => 'btn btn-success'
-- if @tasks
-  %h2 Unassigned Tasks
-  %ol.sortable.unassigned_tasks{'data-sort-url' => sort_tasks_path( :todo => nil ) }
-    =render @tasks
-- if @todos
-  %h2 To Do Lists
-  %ul#todos
-    - @todos.each do |todo|
-      %li{:id => ['todo', todo.id]}
-        = "To Do for #{todo.created_at.strftime('%d %b %Y')}"
-        %ol.sortable.todo_tasks{'data-sort-url' => sort_tasks_path( :todo => todo.id ) }
-          =render todo.tasks, :partial => 'tasks/task'
+%h2 Unassigned Tasks
+%ol#unassigned_tasks.sortable{'data-sort-url' => sort_tasks_path( :todo => nil ) }
+  =render @tasks
+%h2 To Do Lists
+%ul#todos
+  = render @todos

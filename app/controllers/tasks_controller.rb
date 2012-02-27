@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
 
+  respond_to :html, :js
+
   def index
     @tasks = Task.unassigned
     @task = Task.new
@@ -14,7 +16,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
     @task.save
-    redirect_to root_path
+    respond_with @task, :location => root_path
   end
 
   def sort

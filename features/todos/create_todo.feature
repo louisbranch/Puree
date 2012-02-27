@@ -3,6 +3,7 @@ Feature: Creating a To Do Today List
   As an user
   I want to create a To Do Today List
 
+  @javascript
   Scenario:
     Given I go to my activity inventory
     When I add a new To Do Today List

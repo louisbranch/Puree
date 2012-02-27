@@ -3,6 +3,7 @@ Feature: Creating Tasks
   As an user
   I want to add tasks to the Activity Inventory
 
+  @javascript
   Scenario: Creating Tasks
     Given I go to my activity inventory
     When I create a new task
