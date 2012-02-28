@@ -3,7 +3,7 @@ Feature: Adding Tasks to my To Do Today List
   As an user
   I want to add tasks to my To Do Today List
 
-  @javascript
+  @javascript @no-support
   Scenario:
     Given I have a to do today list
     And I have a task
