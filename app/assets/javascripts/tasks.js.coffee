@@ -43,3 +43,7 @@ window.reloadTask = (task) ->
     url: $(task).data('url')
     success: (data) ->
       $(task).replaceWith(data)
+
+$ pomodoroStarted = ->
+  if $('.timestamp').length
+    $('.timestamp').timeago()

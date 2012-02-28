@@ -6,7 +6,9 @@
     %div.pull-right= render 'pomodoros/show', :task => task
   - if task.ongoing?
     - if task.pomodoros.next.ongoing?
-      %div.clear-fix Pomodoro has started
+      %div.clear-fix
+        Pomodoro has started
+        %span{ :title => task.pomodoros.next.started_at.getutc.iso8601, :class => 'timestamp' }= task.pomodoros.next.started_at.to_s
     - else
       %div.clear-fix
         = link_to pomodoro_path(task.pomodoros.next), :method => :put, :class => 'btn btn-info', :remote => true, :id => 'start_pomodoro' do
