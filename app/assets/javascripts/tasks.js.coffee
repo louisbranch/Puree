@@ -7,7 +7,6 @@ window.sortTasks = ->
   $('ol.sortable').sortable
     connectWith: 'ol.sortable',
     placeholder: 'tasks placeholder',
-    handle: 'i.handle',
     opacity: 0.9,
     over: ->
       $(this).addClass('active')

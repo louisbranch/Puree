@@ -23,14 +23,14 @@ end
 
 When /^I drag and drop the second task to the top of the first$/ do
   visit root_path
-  task2 = find("li#task_#{@task2.id} i.handle")
+  task2 = find("li#task_#{@task2.id}")
   list = find("ol.unassigned_tasks")
   task2.drag_to(list)
 end
 
 When /^I drag this task to this to do list$/ do
   visit root_path
-  task = find("li#task_#{@task.id} i.handle")
+  task = find("li#task_#{@task.id}")
   list = find("li#todo_#{@todo.id} ol.todo_tasks")
   task.drag_to(list)
 end

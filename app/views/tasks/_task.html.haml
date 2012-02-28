@@ -1,6 +1,5 @@
 %li{:id => ['task', task.id], :class => 'tasks', 'data-url' => task_path(task)}
-  %i.icon-move.handle
-  = task.name
+  %h4= task.name
   - if task.can_be_estimated?
     = render 'pomodoros/new', :task => task
   - elsif task.pomodoros.size > 0
