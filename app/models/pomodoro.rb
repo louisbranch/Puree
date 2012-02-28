@@ -42,6 +42,6 @@ class Pomodoro < ActiveRecord::Base
     self.finished_at = Time.now
     self.save
   end
-  handle_asynchronously :finish, :run_at => Proc.new { 25.minutes.from_now }
+  handle_asynchronously :finish, :run_at => Proc.new { 5.minutes.from_now }
 
 end

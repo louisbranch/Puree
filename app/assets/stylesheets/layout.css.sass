@@ -26,20 +26,6 @@ ol.sortable
   margin: 0
   min-height: 20px
   padding-bottom: 30px
-  li.tasks
-    input
-      display: none
-    label
-      display: inline-block
-      width: 30px
-      height: 30px
-      background-color: lightgrey
-      text-indent: -9999px
-      cursor: pointer
-      &:hover
-        background-color: darkgrey
-      &:active, &.active
-        background-color: grey
 
 a#new_todo
   font-size: 13px
@@ -67,5 +53,18 @@ li.tasks
     line-height: 32px
   form
     margin: 0
+    input
+      display: none
+    label
+      display: inline-block
+      width: 32px
+      height: 32px
+      background: url(asset_path("tomato_faded_small.png", image))
+      text-indent: -9999px
+      cursor: pointer
+      &:hover
+        background: url(asset_path("tomato_normal_small.png", image))
+      &:active, &.active
+        background: url(asset_path("tomato_normal_small.png", image))
   img.pomodoro
     cursor: pointer
