@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20120226162855) do
   create_table "pomodoros", :force => true do |t|
     t.integer  "task_id"
     t.boolean  "finished",    :default => false
-    t.time     "started_at"
-    t.time     "finished_at"
+    t.datetime "started_at"
+    t.datetime "finished_at"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
