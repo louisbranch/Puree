@@ -27,6 +27,14 @@ class Pomodoro < ActiveRecord::Base
     !started_at.nil? && !finished?
   end
 
+  def image
+    if finished
+      '/assets/tomato_finished_small.png'
+    else
+      '/assets/tomato_normal_small.png'
+    end
+  end
+
   private
 
   def finish

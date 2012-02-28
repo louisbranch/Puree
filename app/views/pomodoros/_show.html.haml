@@ -1,2 +1,2 @@
 - task.pomodoros.each_with_index do |pomodoro, i|
-  = image_tag('#', :title => "#{i+1} Pomodoros")
+  = image_tag(pomodoro.image, :title => "#{i+1} Pomodoros", 'data-tooltip' => true, :class => 'pomodoro')
