@@ -1,3 +1,14 @@
+@mixin colorful_block
+  margin: 10px 0
+  padding: 8px 14px
+  margin-bottom: 18px
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+  background-color: #F5F5F5
+  border: 1px solid #CCC
+  -webkit-border-radius: 4px
+  -moz-border-radius: 4px
+  border-radius: 4px
+
 body
   padding-top: 50px
 
@@ -21,6 +32,13 @@ h2
 .clear-fix
   clear: both
 
+div#pomodoro_ongoing > div
+  @include colorful_block
+  background-color: #D9EDF7
+  border-color: #BCE8F1
+  h3#timeleft
+    margin-top: 10px
+
 ol.sortable
   list-style-type: none
   margin: 0
@@ -39,15 +57,7 @@ ul#todos
 
 li.tasks
   overflow: hidden
-  margin: 10px 0
-  padding: 8px 14px
-  margin-bottom: 18px
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
-  background-color: #F5F5F5
-  border: 1px solid #CCC
-  -webkit-border-radius: 4px
-  -moz-border-radius: 4px
-  border-radius: 4px
+  @include colorful_block
   cursor: move
   h4
     line-height: 32px

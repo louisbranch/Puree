@@ -43,7 +43,27 @@ window.reloadTask = (task) ->
     url: $(task).data('url')
     success: (data) ->
       $(task).replaceWith(data)
+      pomodoroStarted()
 
 $ pomodoroStarted = ->
   if $('.timestamp').length
     $('.timestamp').timeago()
+
+$ disableStart = ->
+  if $('.timestamp').length
+    $('.start_pomodoro').hide()
+
+stopCountdown = ->
+  alert 'hi'
+
+window.startCountdown = (seconds) ->
+  $('#timeleft span').countdown
+    format: 'MS',
+    compact: true,
+    until: seconds + 'S',
+    onExpiry: stopCountdown
+
+$ countdownPomodoro = ->
+  if $('#timeleft')
+    seconds = $('#timeleft').data('time-left')
+    startCountdown(seconds)

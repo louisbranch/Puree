@@ -10,6 +10,11 @@ describe Pomodoro do
       pomodoro.errors[:task].should include("can't be blank")
     end
 
+    it "default duration is 25 minutes" do
+      pomodoro = FactoryGirl.create(:pomodoro)
+      pomodoro.duration.should eq(25)
+    end
+
   end
 
   it "is finished when all pomodoros are finished" do
@@ -34,6 +39,11 @@ describe Pomodoro do
     pomodoro.started_at.should_not be_nil
     pomodoro.finished_at.should_not be_nil
     pomodoro.should be_finished
+  end
+
+  it "has a remaining time in seconds" do
+    pomodoro = FactoryGirl.create(:pomodoro, :started_at => 5.minutes.ago)
+    pomodoro.timeleft.should eq(1200)
   end
 
   it "is ongoing while the timer isn't finished" do

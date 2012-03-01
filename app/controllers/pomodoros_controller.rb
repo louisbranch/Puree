@@ -9,10 +9,10 @@ class PomodorosController < ApplicationController
   end
 
   def update
-    pomodoro = Pomodoro.find(params[:id])
-    pomodoro.start
-    @task = pomodoro.task_id
-    respond_with(@task, :location => root_path)
+    @pomodoro = Pomodoro.find(params[:id])
+    @pomodoro.start
+    @task = @pomodoro.task_id
+    respond_with(@task, @pomodoro, :location => root_path)
   end
 
 end

@@ -6,6 +6,7 @@ class TasksController < ApplicationController
     @tasks = Task.unassigned
     @task = Task.new
     @todos = Todo.all_with_tasks
+    @pomodoro = Pomodoro.ongoing
   end
 
   def show

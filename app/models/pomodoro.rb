@@ -17,6 +17,10 @@ class Pomodoro < ActiveRecord::Base
     where(:finished => false).first
   end
 
+  def self.ongoing
+    where("started_at IS NOT NULL AND finished = ?", false).first
+  end
+
   def start
     self.started_at = Time.now
     self.save
@@ -25,6 +29,11 @@ class Pomodoro < ActiveRecord::Base
 
   def ongoing?
     !started_at.nil? && !finished?
+  end
+
+  def timeleft
+    seconds = (started_at + duration.minutes) - Time.now
+    seconds.round
   end
 
   def image
@@ -42,6 +51,6 @@ class Pomodoro < ActiveRecord::Base
     self.finished_at = Time.now
     self.save
   end
-  handle_asynchronously :finish, :run_at => Proc.new { 5.minutes.from_now }
+  handle_asynchronously :finish, :run_at => Proc.new { 25.minutes.from_now }
 
 end

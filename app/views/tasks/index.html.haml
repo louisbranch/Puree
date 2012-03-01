@@ -2,6 +2,8 @@
 =form_for @task, :class => 'form-inline', :remote => true do |f|
   =f.text_field :name
   =f.submit :class => 'btn btn-success'
+%div#pomodoro_ongoing
+  = render 'pomodoros/ongoing', :pomodoro => @pomodoro if @pomodoro
 .row
   .span4
     %h2 Unassigned Tasks

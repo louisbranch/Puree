@@ -1,1 +1,5 @@
 reloadTask($("<%= task_li %>"))
+$('.start_pomodoro').hide()
+$('div#pomodoro_ongoing').html("<%= escape_javascript(render :partial => 'pomodoros/ongoing', :locals => {:pomodoro => @pomodoro}) %>")
+seconds = $('#timeleft').data('time-left')
+startCountdown(seconds)
