@@ -50,17 +50,19 @@ $ pomodoroStarted = ->
     $('.timestamp').timeago()
 
 $ disableStart = ->
-  if $('.timestamp').length
+  if $('#timeleft')
     $('.start_pomodoro').hide()
 
 stopCountdown = ->
-  alert 'hi'
+  id = $('#timeleft').attr("data-id")
+  $.getScript("/pomodoros/"+ 3 +"/finish.js")
+
 
 window.startCountdown = (seconds) ->
   $('#timeleft span').countdown
     format: 'MS',
     compact: true,
-    until: seconds + 'S',
+    until: 3 + 'S',
     onExpiry: stopCountdown
 
 $ countdownPomodoro = ->

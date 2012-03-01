@@ -15,4 +15,10 @@ class PomodorosController < ApplicationController
     respond_with(@task, @pomodoro, :location => root_path)
   end
 
+  def finish
+    @pomodoro = Pomodoro.find(params[:id])
+    @task = @pomodoro.task_id
+    respond_with(@task, @pomodoro, :location => root_path)
+  end
+
 end

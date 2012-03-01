@@ -1,6 +1,6 @@
 %div
   %h3 Pomodoro in Progress
   %h4= "Task: #{pomodoro.task.name}"
-  %h3#timeleft{ 'data-time-left' => pomodoro.timeleft}
+  %h3#timeleft{ 'data-time-left' => pomodoro.timeleft, 'data-id' => pomodoro.id}
     Time left:
     %span

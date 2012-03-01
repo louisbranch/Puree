@@ -4,7 +4,9 @@ Puree::Application.routes.draw do
     post 'sort', :on => :collection
   end
 
-  resources :pomodoros, :only => [:create, :update]
+  resources :pomodoros, :only => [:create, :update] do
+    get :finish, :on => :member
+  end
 
   resources :todos, :only => [:create]
 
