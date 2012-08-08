@@ -62,7 +62,7 @@ window.startCountdown = (seconds) ->
   $('#timeleft span').countdown
     format: 'MS',
     compact: true,
-    until: 3 + 'S',
+    until: seconds + 'S',
     onExpiry: stopCountdown
 
 $ countdownPomodoro = ->
